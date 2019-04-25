@@ -33,7 +33,7 @@ print(df.head())
 '''
 Show a number people who have heart disease and don't have.
 '''
-sns.countplot(x="target", data=df, palette="bwr")
+sns.countplot(x="target", data=df, palette="BuGn_r")
 plt.show()
 countNoDisease = len(df[df.target == 0])
 countHaveDisease = len(df[df.target == 1])
@@ -42,7 +42,7 @@ print("Percentage Have Heart Disease: {:.2f}%".format((countHaveDisease / (len(d
 '''
 Show a number of sex of people in dataset.
 '''
-sns.countplot(x='sex', data=df, palette="mako_r")
+sns.countplot(x='sex', data=df, palette="GnBu_d")
 plt.xlabel("Sex (0 = female, 1= male)")
 plt.show()
 countFemale = len(df[df.sex == 0])
@@ -56,7 +56,7 @@ print(df.groupby('target').mean())
 '''
 Show bar graph Heart Disease Frequency for Ages
 '''
-pd.crosstab(df.age,df.target).plot(kind="bar",figsize=(20,6))
+pd.crosstab(df.age,df.target).plot(kind="bar",figsize=(20,6),color=['#F4D03F','#17A589'])
 plt.title('Heart Disease Frequency for Ages')
 plt.xlabel('Age')
 plt.ylabel('Frequency')
@@ -65,7 +65,7 @@ plt.show()
 '''
 Show bar graph Heart Disease Frequency for Sex
 '''
-pd.crosstab(df.sex,df.target).plot(kind="bar",figsize=(15,6),color=['#1CA53B','#AA1111' ])
+pd.crosstab(df.sex,df.target).plot(kind="bar",figsize=(15,6),color=['#34495E','#17A589'])
 plt.title('Heart Disease Frequency for Sex')
 plt.xlabel('Sex (0 = Female, 1 = Male)')
 plt.xticks(rotation=0)
@@ -75,7 +75,7 @@ plt.show()
 '''
 Show scatter plot of Heart Disease occure wit maximun heart rate and age
 '''
-plt.scatter(x=df.age[df.target==1], y=df.thalach[(df.target==1)], c="red")
+plt.scatter(x=df.age[df.target==1], y=df.thalach[(df.target==1)], c="yellow")
 plt.scatter(x=df.age[df.target==0], y=df.thalach[(df.target==0)])
 plt.legend(["Disease", "Not Disease"])
 plt.xlabel("Age")
@@ -84,7 +84,7 @@ plt.show()
 '''
 Show bar graph Heart Disease Frequency for slope of peak
 '''
-pd.crosstab(df.slope,df.target).plot(kind="bar",figsize=(15,6),color=['#DAF7A6','#FF5733' ])
+pd.crosstab(df.slope,df.target).plot(kind="bar",figsize=(15,6),color=['#B9770E','#5B2C6F' ])
 plt.title('Heart Disease Frequency for Slope')
 plt.xlabel('The Slope of The Peak Exercise ST Segment ')
 plt.xticks(rotation = 0)
@@ -93,7 +93,7 @@ plt.show()
 '''
 Show bar graph Heart Disease Frequency for Fasting blood sugar
 '''
-pd.crosstab(df.fbs,df.target).plot(kind="bar",figsize=(15,6),color=['#FFC300','#581845' ])
+pd.crosstab(df.fbs,df.target).plot(kind="bar",figsize=(15,6),color=['#11A5AA','#AA1190' ])
 plt.title('Heart Disease Frequency According To FBS')
 plt.xlabel('FBS - (Fasting Blood Sugar > 120 mg/dl) (1 = true; 0 = false)')
 plt.xticks(rotation = 0)
@@ -103,7 +103,7 @@ plt.show()
 '''
 Show bar graph Heart Disease Frequency for type of chest pain
 '''
-pd.crosstab(df.cp,df.target).plot(kind="bar",figsize=(15,6),color=['#11A5AA','#AA1190' ])
+pd.crosstab(df.cp,df.target).plot(kind="bar",figsize=(15,6),color=['#FFC300','#581845' ])
 plt.title('Heart Disease Frequency According To Chest Pain Type')
 plt.xlabel('Chest Pain Type')
 plt.xticks(rotation = 0)
