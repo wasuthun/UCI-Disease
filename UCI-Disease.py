@@ -153,3 +153,15 @@ Use Random Forest from sklean and check accuracy score by use testing data
 rf = RandomForestClassifier(n_estimators = 1000, random_state = 1)
 rf.fit(x_train, y_train)
 print("Random Forest Algorithm Accuracy Score : {:.2f}%".format(rf.score(x_test,y_test)*100))
+
+methods = [ "NeuroNet","SVM", "Random Forest"]
+accuracy = [suk*100,svm.score(x_test,y_test)*100,rf.score(x_test,y_test)*100]
+colors = ["purple", "green", "red"]
+
+sns.set_style("whitegrid")
+plt.figure(figsize=(16,5))
+plt.yticks(np.arange(0,100,10))
+plt.ylabel("Accuracy %")
+plt.xlabel("Method")
+sns.barplot(x=methods, y=accuracy, palette=colors)
+plt.show()
