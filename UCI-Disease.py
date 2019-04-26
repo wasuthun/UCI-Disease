@@ -115,10 +115,13 @@ Preprocessing
 a = pd.get_dummies(df['cp'], prefix = "cp")
 b = pd.get_dummies(df['thal'], prefix = "thal")
 c = pd.get_dummies(df['slope'], prefix = "slope")
-frames = [df, a, b, c]
+d = pd.get_dummies(df['restecg'], prefix = "restecg")
+e = pd.get_dummies(df['ca'],prefix= "ca")
+print(df.columns)
+frames = [df, a, b, c, d ,e]
 df = pd.concat(frames, axis = 1)
 print(df.head())
-df = df.drop(columns = ['cp', 'thal', 'slope'])
+df = df.drop(columns = ['cp', 'thal', 'slope','restecg','ca'])
 y = df.target.values
 x_data = df.drop(['target'], axis = 1)
 '''
@@ -130,14 +133,14 @@ x_train, x_test, y_train, y_test = train_test_split(x,y,test_size = 0.2,random_s
 Build Neuro network model and prediction
 '''
 model = Sequential()
-model.add(Dense(11,activation='relu',input_dim=21))
+model.add(Dense(11,activation='relu',input_dim=27))
 model.add(Dense(4,activation='relu'))
 model.add(Dropout(rate=0.5))
 model.add(Dense(3,activation='relu'))
 model.add(Dense(3,activation='relu'))
 model.add(Dense(1,activation='sigmoid'))
 model.compile(loss='binary_crossentropy',optimizer='adam',metrics=['accuracy'])
-model.fit(x_train,y_train,epochs=100)
+model.fit(x_train,y_train,epochs=300)
 sd=model.predict(x_test)
 suk=accuracy_score(y_test,sd.round())
 print("Test Accuracy of NeuroNet: {:.2f}%".format(suk*100))
